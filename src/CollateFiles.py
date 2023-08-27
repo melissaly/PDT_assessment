@@ -61,6 +61,7 @@ def open_files(input_dir_name, output_file_name):
     :param output_file_name: path of file where result is written
     :return: list of opened input files, opened output file
     """
+    logger.info('Opening %s %s', input_dir_name, output_file_name)
     input_dir_name = os.path.join(os.getcwd(), input_dir_name)
     output_file_name = os.path.join(os.getcwd(), output_file_name)
 
