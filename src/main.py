@@ -4,7 +4,7 @@ import logging
 import CollateFiles
 
 if __name__ == '__main__':
-    logging.basicConfig(filename='app.log', level='info')
+    logging.basicConfig(filename='app.log', level='INFO')
     args = sys.argv
     if len(args) != 3:
         print('Expected parameters: input directory and output file')

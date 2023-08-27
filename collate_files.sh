@@ -28,6 +28,7 @@ case "${ACTION}" in
     rm -f app.log
     rm -f test/app.log
     rm -rf test/test_files/out/*
+    rm -rf test/test_files/perf_files/*
     ;;
   *) echo "Unknown command! Available commands are:
     run

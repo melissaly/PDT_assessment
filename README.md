@@ -7,7 +7,7 @@ Thank you for your consideration.
 ## Expected Behavior
 Prompt: This program consolidates data from multiple files into a single lexicographically-sorted file. It takes two arguments: an input directory path and an output file path. The input directory should contain newline-delimited text files sorted lexicographically. Blank lines may be interspersed throughout input files. The program creates an output file at the given path that contains the full set of unique text lines across all input files, lexicographically sorted, omitting any blank lines. 
 
-Other implemented behavior: The file names are expected to be relative to where the user is calling from. If the output file already exists, it will be overwritten. The output file has a newline at the end. The program also accepts csv files as input. 
+Other implemented behavior: The file names are expected to be relative to where the user is calling from. If the output file already exists, it will be overwritten. The output file has a newline at the end. The program also accepts csv files as input. If any of the input files are unable to be opened for any reason, the program will ignore that file and continue running.
 
 ## Approach
 
@@ -18,6 +18,19 @@ It reads a line from each of the files, stores them in an array, and finds the l
 When the file reader reaches the end of the file, the file is removed from the array and the program continues with each of the other files until all files are removed from the array.
 
 This program uses Python because it is easy to read and understand. Although space and time complexity are considered, overall latency was not so Python's main drawback, its speed, was not a significant negative. In addition, since no binary files are to be submitted, a Java or C++ program would have to be compiled after submission anyway so there are fewer benefits of using a compiled language as opposed to an interpreter language. 
+
+### Line by Line
+There are two arrays of note: one of the actual input files, and one of the next words in each of the files. The index of the words should match the index of the file it came from.
+
+The algorithm begins with initializing the array where the words are stored by taking the first line from each file. Then it finds the the lowest string and checks if it should be written. 
+
+If it is a new line or matches the previous word, that word is skipped. The duplicates should always be caught this way because they are sorted. New lines are lower lexicographically so they will be picked out until a valid string is in the array. 
+
+Once an appropriate word is found, the word is written to the output file. The file that had that word moves on to the next line which is written back into the array.  
+ 
+If the file has reached its end (marked by an empty string) then that file is closed and the word in the array representing that file is removed.  
+
+The process then repeats. The lowest string is found, written, and the file that the word came from moves onto the next line. 
 
 ## Time and Space Complexity
 Let *n* be the number of files and *m* be the average number of lines per file.
@@ -71,6 +84,8 @@ Parameter|Description
 
 The results are in csv format so they can easily be analyzed by numpy and pandas, but in the interest of not adding dependencies, that was not done in this program.
 
+It should also be noted that 
+
 ## Running the Program
 ### Bash Script
 This program offers a bash script in order to run the program and tests.
@@ -91,4 +106,4 @@ performance test|`python3 ./test/PerformanceTest.py $TEST_TYPE`
 
 
 ## Given Time Constraints
-This work was done with the understanding that there were no time constraints. However, that is not realistic in a work environment. If I was more limited on time, I would not have written the bash script or the performance tests. It would not have been much faster if I had reduced the unit tests, given how standardized they were. 
+This work was done with the understanding that there were no time constraints. However, that is not realistic in a work environment. If I was more limited on time, I would not have written the bash script or the performance tests. It would not have been much faster if I had reduced the unit tests, given how standardized they were. This README would also be significantly shorter.

@@ -1,4 +1,5 @@
 test/test_files/out/*
 test/test_files/perf_files/*
+test/perf_results.csv
 .idea
 *.log
