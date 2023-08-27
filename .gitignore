@@ -1,0 +1,4 @@
+test/test_files/out/*
+test/test_files/perf_files/*
+.idea
+*.log
